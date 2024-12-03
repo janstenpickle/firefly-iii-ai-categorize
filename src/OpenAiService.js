@@ -3,7 +3,7 @@ import {getConfigVariable} from "./util.js";
 
 export default class OpenAiService {
     #openAi;
-    #model = "gpt-3.5-turbo-instruct";
+    #model;
 
     constructor() {
         const apiKey = getConfigVariable("OPENAI_API_KEY")
@@ -13,6 +13,7 @@ export default class OpenAiService {
         });
 
         this.#openAi = new OpenAIApi(configuration)
+        this.#model = getConfigVariable("OPENAI_MODEL")
     }
 
     async classify(categories, destinationName, description) {
