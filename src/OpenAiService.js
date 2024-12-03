@@ -7,13 +7,14 @@ export default class OpenAiService {
 
     constructor() {
         const apiKey = getConfigVariable("OPENAI_API_KEY")
+        const model = getConfigVariable("OPENAI_MODEL")
 
         const configuration = new Configuration({
             apiKey
         });
 
         this.#openAi = new OpenAIApi(configuration)
-        this.#model = getConfigVariable("OPENAI_MODEL")
+        this.#model = model
     }
 
     async classify(categories, destinationName, description) {
